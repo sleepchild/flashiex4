@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="back"
+        android:textColor="#000000"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <LinearLayout
+            android:id="@+id/led_yellow"
+            android:onClick="ledonoff"
+            android:orientation="vertical"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#E6992E"
+            android:layout_marginRight="10dp"/>
+
+        <LinearLayout
+            android:id="@+id/led_white"
+            android:onClick="ledonoff"
+            android:orientation="vertical"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#ABE1E7"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
+
+        <LinearLayout
+            android:id="@+id/led_dualwy"
+            android:onClick="ledonoff"
+            android:orientation="vertical"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#21A7E6"
+            android:padding="1dp"
+            android:layout_marginLeft="10dp">
+
+            <LinearLayout
+                android:clickable="false"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.0"
+                android:background="#E6992E"/>
+
+            <LinearLayout
+                android:clickable="false"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.0"
+                android:background="#ABEDED"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="brightness"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginTop="10dp"/>
+
+    <RadioGroup
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:onClick="radioClick"
+            android:tag="25"
+            android:text="10%"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:onClick="radioClick"
+            android:tag="50"
+            android:text="20%"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:onClick="radioClick"
+            android:tag="100"
+            android:text="40%"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/rad_b120"
+            android:onClick="radioClick"
+            android:tag="150"
+            android:text="60%"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/rad_b150"
+            android:onClick="radioClick"
+            android:tag="200"
+            android:text="80%"/>
+        
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/rad_b250"
+            android:onClick="radioClick"
+            android:tag="250"
+            android:text="100%"/>
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="front"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginTop="10dp"
+        android:textSize="15sp"
+        android:textColor="#000000"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/led_front"
+            android:onClick="ledonoff"
+            android:orientation="vertical"
+            android:layout_width="320dp"
+            android:layout_height="match_parent"
+            android:background="#47D6C5"/>
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rad_f25"
+            android:onClick="radioClick"
+            android:tag="25"
+            android:text="25"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rad_f50"
+            android:onClick="radioClick"
+            android:tag="50"
+            android:text="50"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rad_f75"
+            android:onClick="radioClick"
+            android:tag="75"
+            android:text="75"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rad_f100"
+            android:onClick="radioClick"
+            android:tag="100"
+            android:text="100"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"/>
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/led_alloff"
+        android:onClick="ledonoff"
+        android:layout_width="match_parent"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_height="100dp"
+        android:text="off"
+        android:textColor="#FFFFFF"
+        android:background="#000000"
+        android:textSize="20sp"/>
+
+</LinearLayout>
+
+
