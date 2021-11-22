@@ -3,4 +3,6 @@
     <color name="primary">#12916A</color>
     <color name="primaryDark">#126E91</color>
     <color name="accent">#FFFF4081</color>
+    
+    <color name="bell">#126E91</color>
 </resources>

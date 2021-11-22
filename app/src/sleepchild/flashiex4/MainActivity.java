@@ -9,7 +9,13 @@ import java.util.*;
 
 /*
     flashie X4 - torch for the moto X4
-//*/
+    
+     - the moto X4 has 3 main leds; 2 on the back, 1 on the front;
+     - it also has a 4rth led on the front; locayted between the front facing led and the speaker;
+     
+     i just cannot think of a usecase for the 4rth led;, so we'll only use the 3 main leds;
+
+ //*/
 
 // this is a huge mess
 // needs re-writting
@@ -34,13 +40,7 @@ public class MainActivity extends Activity implements SU.CB{
         su = new SU(this);
     }
     
-    /*
-        - the moto X4 has 3 main leds; 2 on the back, 1 on the front;
-        - it also has a 4rth led on the front; locayted between the front facing led and the speaker;
-        //
-        i just cannot think of a usecase for the 4rth led;, so we'll only use the 3 main leds;
-        
-    //*/
+    
     void init(){
         
     }
@@ -58,10 +58,13 @@ public class MainActivity extends Activity implements SU.CB{
             case R.id.led_dualwy:
                 yellowWhite();
                 break;
-            case R.id.led_front:
+            case R.id.led_front_lrg:
                 frontOnOff();
                 break;
-             case R.id.led_alloff:
+            case R.id.led_front_sml:
+                frontSmlOnOff();
+                break;
+            case R.id.led_alloff:
                  allOff();
                  break;
         }
@@ -186,6 +189,10 @@ public class MainActivity extends Activity implements SU.CB{
         }
     }
     
+    void frontSmlOnOff(){
+        // why?
+    }
+    
     void ledValue(String ledPath, int brightness){
         su.exec("echo "+ brightness +" > "+ ledPath+"");
     }
@@ -235,9 +242,10 @@ public class MainActivity extends Activity implements SU.CB{
         final static String F_WHITE = " /sys/class/leds/led:torch_2/brightness;";
     }
     
-    class SWTCH{// swtch not switch
+    class SWTCH{
         final static String BACK = " /sys/class/leds/led:switch_0/brightness;";
         final static String FRONT = " /sys/class/leds/led:switch_1/brightness;";
+        //todo: find path for tiny front led
     }
 
     @Override
@@ -246,8 +254,12 @@ public class MainActivity extends Activity implements SU.CB{
         su.exec("exit\n",null);
         super.onDestroy();
     }
-    
-    
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture)
+    {
+        // TODO: Implement this method
+    }
     
     
 }
