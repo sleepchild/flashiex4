@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sleepchild.flashiex4"
-    android:versionCode="20"
-    android:versionName="0.2.0">
+    android:versionCode="21"
+    android:versionName="0.2.1">
 
 	<!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>-->
 	
@@ -24,6 +24,15 @@
         </activity>
         <service
             android:name=".FlashieTiles"
+            android:label="@string/tile_label"
+            android:icon="@drawable/tile_icon"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".FlashieTilesF"
             android:label="@string/tile_label"
             android:icon="@drawable/tile_icon"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">

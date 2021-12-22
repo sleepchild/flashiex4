@@ -11,9 +11,7 @@ import java.util.*;
     flashie X4 - torch for the moto X4
     
      - the moto X4 has 3 main leds; 2 on the back, 1 on the front;
-     - it also has a 4rth led on the front; locayted between the front facing led and the speaker;
-     
-     i just cannot think of a usecase for the 4rth led;, so we'll only use the 3 main leds;
+     - it also has a 4rth led on the front; located between the front facing led and the speaker;
 
  //*/
 
@@ -21,9 +19,8 @@ import java.util.*;
 // needs re-writting
 //
 public class MainActivity extends Activity implements SU.CB{
-    SU su;
-//    Handler handle = new Handler();
-    //final int LED_OFF = 0;
+    //
+    Flashie flash;
     final int LED_MIN = 20;
     
     final int MAX_BRIGHTNESS = 225;
@@ -37,12 +34,12 @@ public class MainActivity extends Activity implements SU.CB{
         setContentView(R.layout.activity_main);
         //
         init();
-        su = new SU(this);
+        flash = new Flashie();
     }
     
     
     void init(){
-        
+        //
     }
     
     // this is set in activity_main.xml
@@ -79,25 +76,25 @@ public class MainActivity extends Activity implements SU.CB{
             case R.id.rad_f50:
             case R.id.rad_f25:
                 brightnessF = value;
-                if(isOn(SWTCH.FRONT)){
+                if(isOn(Flashie.SWTCH.FRONT)){
                     frontOnOff();
                     frontOnOff();
                 }
                 break;
             default:
                 brightnessB = value;
-                if(isOn(SWTCH.BACK)){
-                    switchOff(SWTCH.BACK);
-                    if(isOn(LEDS.B_WHITE) && isOn(LEDS.B_YELLOW)){
-                        ledValue(LEDS.B_WHITE, brightnessB);
-                        ledValue(LEDS.B_YELLOW, brightnessB);
+                if(isOn(Flashie.SWTCH.BACK)){
+                    switchOff(Flashie.SWTCH.BACK);
+                    if(isOn(Flashie.LEDS.B_WHITE) && isOn(Flashie.LEDS.B_YELLOW)){
+                        ledValue(Flashie.LEDS.B_WHITE, brightnessB);
+                        ledValue(Flashie.LEDS.B_YELLOW, brightnessB);
                         //
-                    }else if(isOn(LEDS.B_WHITE)){
-                        ledValue(LEDS.B_WHITE, brightnessB);
-                    }else if(isOn(LEDS.B_YELLOW)){
-                        ledValue(LEDS.B_YELLOW, brightnessB);
+                    }else if(isOn(Flashie.LEDS.B_WHITE)){
+                        ledValue(Flashie.LEDS.B_WHITE, brightnessB);
+                    }else if(isOn(Flashie.LEDS.B_YELLOW)){
+                        ledValue(Flashie.LEDS.B_YELLOW, brightnessB);
                     }
-                    switchOn(SWTCH.BACK);
+                    switchOn(Flashie.SWTCH.BACK);
                 }
                 break;
         }
@@ -117,15 +114,15 @@ public class MainActivity extends Activity implements SU.CB{
     }
     
     void yellowOnOff(){
-        if(isOn(SWTCH.BACK)){
-            if(isOn(LEDS.B_YELLOW) && isOn(LEDS.B_WHITE)){
+        if(isOn(Flashie.SWTCH.BACK)){
+            if(isOn(Flashie.LEDS.B_YELLOW) && isOn(Flashie.LEDS.B_WHITE)){
                 yellowOnOnly();
-            }else if(isOn(LEDS.B_WHITE)){
+            }else if(isOn(Flashie.LEDS.B_WHITE)){
                 yellowOnOnly();
             }else{
-                ledOff(LEDS.B_YELLOW);
-                ledOff(LEDS.B_WHITE);
-                switchOff(SWTCH.BACK);
+                ledOff(Flashie.LEDS.B_YELLOW);
+                ledOff(Flashie.LEDS.B_WHITE);
+                switchOff(Flashie.SWTCH.BACK);
             }
         }else{
             yellowOnOnly();
@@ -133,22 +130,22 @@ public class MainActivity extends Activity implements SU.CB{
     }
     
     void yellowOnOnly(){
-        switchOff(SWTCH.BACK);
-        ledOff(LEDS.B_WHITE);
-        ledValue(LEDS.B_YELLOW, brightnessB);
-        switchOn(SWTCH.BACK);
+        switchOff(Flashie.SWTCH.BACK);
+        ledOff(Flashie.LEDS.B_WHITE);
+        ledValue(Flashie.LEDS.B_YELLOW, brightnessB);
+        switchOn(Flashie.SWTCH.BACK);
     }
     
     void whiteOnoff(){
-        if(isOn(SWTCH.BACK)){
-            if(isOn(LEDS.B_YELLOW) && isOn(LEDS.B_WHITE)){
+        if(isOn(Flashie.SWTCH.BACK)){
+            if(isOn(Flashie.LEDS.B_YELLOW) && isOn(Flashie.LEDS.B_WHITE)){
                 whiteOnOnly();
-            }else if(isOn(LEDS.B_YELLOW)){
+            }else if(isOn(Flashie.LEDS.B_YELLOW)){
                 whiteOnOnly();
             }else{
-                ledOff(LEDS.B_YELLOW);
-                ledOff(LEDS.B_WHITE);
-                switchOff(SWTCH.BACK);
+                ledOff(Flashie.LEDS.B_YELLOW);
+                ledOff(Flashie.LEDS.B_WHITE);
+                switchOff(Flashie.SWTCH.BACK);
             }
         }else{
             whiteOnOnly();
@@ -156,57 +153,61 @@ public class MainActivity extends Activity implements SU.CB{
     }
     
     void whiteOnOnly(){
-        switchOff(SWTCH.BACK);
-        ledOff(LEDS.B_YELLOW);
-        ledValue(LEDS.B_WHITE, brightnessB);
-        switchOn(SWTCH.BACK);
+        switchOff(Flashie.SWTCH.BACK);
+        ledOff(Flashie.LEDS.B_YELLOW);
+        ledValue(Flashie.LEDS.B_WHITE, brightnessB);
+        switchOn(Flashie.SWTCH.BACK);
     }
     
     void yellowWhite(){
-        if(isOn(SWTCH.BACK)){
-            if(isOn(LEDS.B_WHITE) && isOn(LEDS.B_YELLOW)){
-                switchOff(SWTCH.BACK);
+        if(isOn(Flashie.SWTCH.BACK)){
+            if(isOn(Flashie.LEDS.B_WHITE) && isOn(Flashie.LEDS.B_YELLOW)){
+                switchOff(Flashie.SWTCH.BACK);
             }else{
-                switchOff(SWTCH.BACK);
-                ledValue(LEDS.B_WHITE, brightnessB);
-                ledValue(LEDS.B_YELLOW, brightnessB);
-                switchOn(SWTCH.BACK);
+                switchOff(Flashie.SWTCH.BACK);
+                ledValue(Flashie.LEDS.B_WHITE, brightnessB);
+                ledValue(Flashie.LEDS.B_YELLOW, brightnessB);
+                switchOn(Flashie.SWTCH.BACK);
             }
         }else{
-            ledValue(LEDS.B_WHITE, brightnessB);
-            ledValue(LEDS.B_YELLOW, brightnessB);
-            switchOn(SWTCH.BACK);
+            ledValue(Flashie.LEDS.B_WHITE, brightnessB);
+            ledValue(Flashie.LEDS.B_YELLOW, brightnessB);
+            switchOn(Flashie.SWTCH.BACK);
         }
     }
     
     void frontOnOff(){
-        if(isOn(SWTCH.FRONT)){
-            ledOff(LEDS.F_WHITE);
-            switchOff(SWTCH.FRONT);
+        if(isOn(Flashie.SWTCH.FRONT)){
+            ledOff(Flashie.LEDS.F_WHITE);
+            switchOff(Flashie.SWTCH.FRONT);
         }else{
-            ledValue(LEDS.F_WHITE, brightnessF);
-            switchOn(SWTCH.FRONT);
+            ledValue(Flashie.LEDS.F_WHITE, brightnessF);
+            switchOn(Flashie.SWTCH.FRONT);
         }
     }
     
     void frontSmlOnOff(){
-        // why?
+        if(isOn(Flashie.SWTCH.FRONT_TINY)){
+            switchOff(Flashie.SWTCH.FRONT_TINY);
+        }else{
+            ledValue(Flashie.SWTCH.FRONT_TINY, 150);
+        }
     }
     
     void ledValue(String ledPath, int brightness){
-        su.exec("echo "+ brightness +" > "+ ledPath+"");
+        flash.ledValue(ledPath, brightness);
     }
     
     void ledOff(String leds){
-        su.exec("echo 0 > "+ leds);
+        flash.ledOff(leds);
     }
     
     void switchOn(String swtch){
-        su.exec("echo 1 > "+ swtch);
+        flash.switchOn(swtch);
     }
     
     void switchOff(String swtch){
-        su.exec("echo 0 > "+swtch);
+        flash.switchOff(swtch);
     }
     
     //
@@ -215,11 +216,7 @@ public class MainActivity extends Activity implements SU.CB{
     // @param: path: the path of the LEDS/SWTCH
     //
     boolean isOn(String path){
-        String str = su.getVal("cat "+path);
-        if(str.isEmpty()){
-            return false;
-        }
-        int stat = Integer.valueOf(str);
+        int stat = flash.getIntValue(path);
         if(stat!=0){
             return true;
         }
@@ -228,30 +225,19 @@ public class MainActivity extends Activity implements SU.CB{
     
     void allOff(){
         // leds off
-        ledOff(LEDS.B_WHITE);
-        ledOff(LEDS.B_YELLOW);
-        ledOff(LEDS.F_WHITE);
+        ledOff(Flashie.LEDS.B_WHITE);
+        ledOff(Flashie.LEDS.B_YELLOW);
+        ledOff(Flashie.LEDS.F_WHITE);
         // swtch off
-        switchOff(SWTCH.BACK);
-        switchOff(SWTCH.FRONT);
-    }
-       
-    class LEDS{
-        final static String B_YELLOW = " /sys/class/leds/led:torch_1/brightness;";
-        final static String B_WHITE = " /sys/class/leds/led:torch_0/brightness;" ;
-        final static String F_WHITE = " /sys/class/leds/led:torch_2/brightness;";
-    }
-    
-    class SWTCH{
-        final static String BACK = " /sys/class/leds/led:switch_0/brightness;";
-        final static String FRONT = " /sys/class/leds/led:switch_1/brightness;";
-        //todo: find path for tiny front led
+        switchOff(Flashie.SWTCH.BACK);
+        switchOff(Flashie.SWTCH.FRONT);
+        switchOff(Flashie.SWTCH.FRONT_TINY);
     }
 
     @Override
     protected void onDestroy()
     {
-        su.exec("exit\n",null);
+        flash.exit();
         super.onDestroy();
     }
 

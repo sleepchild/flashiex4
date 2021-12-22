@@ -28,6 +28,8 @@ public class RoundyButton extends Button
     //////
     
     int backgroundColor = Color.TRANSPARENT;
+    int color2=0;
+    int color3=0;
     int borderColor = Color.TRANSPARENT;
     int borderWidth=5;
     int cornerRadius=20;
@@ -47,7 +49,9 @@ public class RoundyButton extends Button
         borderColor = a.getColor(R.styleable.CustomViewItem_borderColor, borderColor);
         borderWidth = a.getDimensionPixelSize(R.styleable.CustomViewItem_borderWidth, borderWidth);
         cornerRadius = a.getDimensionPixelSize(R.styleable.CustomViewItem_cornerRadius, cornerRadius);
-        //
+        color2= a.getColor(R.styleable.CustomViewItem_color2, color2);
+        
+        a.recycle();
     }
 
     @Override
@@ -92,7 +96,13 @@ public class RoundyButton extends Button
             gd.setCornerRadius(cornerRadius);
             pd.setCornerRadius(cornerRadius);
         }
-        gd.setColor(backgroundColor);
+        
+        if(color2!=0){
+            gd.setColors(new int[]{backgroundColor, color2});
+        }else{
+            gd.setColor(backgroundColor);
+        }
+        
         gd.setStroke(borderWidth, borderColor);
         //
         pd.setColor(darken(backgroundColor, 0.1));
@@ -136,6 +146,7 @@ public class RoundyButton extends Button
         int alpha = Color.alpha(color);
         return Color.argb(alpha, red, green, blue);
     }
+    
     private static int darkenColor(int color, double fraction) {
         return (int)Math.max(color - (color * fraction), 0);
     }

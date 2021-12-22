@@ -28,6 +28,7 @@ public class RoundyView extends View
     //////
     
     int backgroundColor = Color.TRANSPARENT;
+    
     int borderColor = Color.TRANSPARENT;
     int borderWidth=5;
     int cornerRadius=20;

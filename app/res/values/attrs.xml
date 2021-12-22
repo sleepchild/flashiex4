@@ -7,6 +7,8 @@
         <attr name="isButton" format="boolean" />
         <attr name="text" format="string" />
         <attr name="backgroundColor" format="color"/>
+        <attr name="color2" format="color"/>
+        <attr name="color3" format="color"/>
         <attr name="cornerRadius" format="dimension" />
         <attr name="cornerRadiusTopLeft" format="dimension" />
         <attr name="cornerRadiusTopRight" format="dimension" />
