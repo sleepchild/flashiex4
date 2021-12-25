@@ -15,5 +15,4 @@ yellow and white on the back (dual tone). and white on the front.
 ## todo
 - add a proper check for root
 - add a no root implementation
-- and a layout for noroot mode
 - fix issue #1
