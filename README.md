@@ -10,7 +10,7 @@ torch app for the moto x4 [needs root]
 ### about moto x4 leds
 - the x4 has 3 main leds. 
 yellow and white on the back (dual tone). and white on the front.
-- it also has a 4rth very tiny notification led in between the front led and speaker. (still working on it)
+- it also has a 4rth very tiny notification led in between the front led and speaker.
 
 ## todo
 - add a proper check for root
